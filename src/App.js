@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Feed from "./Feed";
+import "./App.css";
+import SharedLayout from "./pages/SharedLayout";
+import Error from "./pages/Error";
+import MyTweets from "./pages/MyTweets";
+import AllUsers from "./pages/AllUsers";
+import SearchUser from "./pages/SearchUser";
+import LoginForm from "./components/LoginForm";
+import ForgetForm from "./components/ForgetForm";
+import SignUp from "./components/SignUp";
+import SignInSide from "./components/SignInSide";
+import UpdateForm from "./components/UpdateForm";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Feed />} />
+          <Route path="*" element={<Error />} />
+          <Route path="my_tweets" element={<MyTweets />} />
+          <Route path="all_users" element={<AllUsers />} />
+          <Route path="search_users" element={<SearchUser />} />
+        </Route>
+
+        <Route path="/login" exact element={<SignInSide />}>
+          <Route index element={<LoginForm />} />
+          <Route exact path="signup" element={<SignUp />} />
+          <Route exact path="forgot" element={<ForgetForm />} />
+          <Route path="update" exact element={<UpdateForm></UpdateForm>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,0 +1,22 @@
+.noUser {
+  color: red;
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.statusOnline {
+  color: green;
+  font-weight: bold;
+}
+.statusOffline {
+  color: red;
+  font-weight: bold;
+}
+.listItem {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.searchuser {
+  text-align: center;
+  margin-bottom: 2rem;
+}
