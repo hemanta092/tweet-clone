@@ -52,7 +52,7 @@ export default function DrawerAppBar(props) {
             }}
           >
           <ListItemButton>
-            <ListItemText primary="Home" />
+            <ListItemText primary="Home" onClick={handleDrawerToggle}/>
           </ListItemButton>
           </Link>
         </ListItem>
@@ -68,11 +68,11 @@ export default function DrawerAppBar(props) {
           >
             {isLoggedIn ? (
               <ListItemButton onClick={handleSignOut}>
-                <ListItemText primary="Sign Out" />
+                <ListItemText primary="Sign Out" onClick={handleDrawerToggle}/>
               </ListItemButton>
             ) : (
               <ListItemButton onClick={handleDrawerToggle}>
-                <ListItemText primary="Sign In" />
+                <ListItemText primary="Sign In" onClick={handleDrawerToggle}/>
               </ListItemButton>
             )}
           </Link>
@@ -89,7 +89,7 @@ export default function DrawerAppBar(props) {
             }}
           >
           <ListItemButton>
-            <ListItemText primary="My Tweets" />
+            <ListItemText primary="My Tweets" onClick={handleDrawerToggle}/>
           </ListItemButton>
           </Link>
         </ListItem>
@@ -103,7 +103,7 @@ export default function DrawerAppBar(props) {
             }}
           >
           <ListItemButton>
-            <ListItemText primary="All Users" />
+            <ListItemText primary="All Users" onClick={handleDrawerToggle}/>
           </ListItemButton>
           </Link>
         </ListItem>
@@ -117,7 +117,7 @@ export default function DrawerAppBar(props) {
             }}
           >
           <ListItemButton>
-            <ListItemText primary="Search Users" />
+            <ListItemText primary="Search Users" onClick={handleDrawerToggle}/>
           </ListItemButton>
           </Link>
         </ListItem>

@@ -18,7 +18,7 @@ const Home = () => {
           <img src={pic} alt="" className="profileimage" />
           <h1 style={{ textAlign: "center" }}>{user.name}</h1>
         </Grid>
-        <Grid item className="col col-xs-12 px-2 col-md-8 mx-0 justify-content-center">
+        <Grid item className="col col-xs-12 px-2 col-md-8 mx-0 mb-3 justify-content-center">
           <Outlet />
         </Grid>
         
