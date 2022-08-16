@@ -13,7 +13,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../features/user/userSlice";
 import { useSnackbar } from "notistack";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
+import { IconButton, InputAdornment } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function LoginForm() {
   const {
@@ -26,17 +29,16 @@ export default function LoginForm() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+  const [showPass, setShowPass] = React.useState(false);
+
   const { enqueueSnackbar } = useSnackbar();
   const { isLoading } = useSelector((state) => state.user);
 
-
-  const onSubmit = async(data) => {
-    try{
+  const onSubmit = async (data) => {
+    try {
       await dispatch(loginRequest(data)).unwrap();
       navigate("/tweet");
-    }
-    catch(err){
+    } catch (err) {
       const variant = "error";
       enqueueSnackbar("Invalid Username or Password!", { variant });
     }
@@ -69,7 +71,7 @@ export default function LoginForm() {
           })}
           margin="normal"
           fullWidth
-          error={errors.email && errors.email.message.length >0}
+          error={errors.email && errors.email.message.length > 0}
           id="userId"
           label="Email Address *"
           name="userId"
@@ -89,12 +91,21 @@ export default function LoginForm() {
             },
           })}
           fullWidth
-          error={errors.password && errors.password.message.length>0}
+          error={errors.password && errors.password.message.length > 0}
           name="password"
           label="Password *"
-          type="password"
+          type={showPass ? "text" : "password"}
           id="password"
           helperText={errors.password && errors.password.message}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={() => setShowPass(!showPass)}>
+                  {showPass ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
           onKeyUp={() => {
             trigger("password");
           }}
@@ -105,8 +116,11 @@ export default function LoginForm() {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          { isLoading===true? <Spinner animation="border" variant="light" />:"Sign In"}
-          
+          {isLoading === true ? (
+            <Spinner animation="border" variant="light" />
+          ) : (
+            "Sign In"
+          )}
         </Button>
         <Grid container>
           <Grid item xs>

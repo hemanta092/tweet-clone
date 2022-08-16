@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// const refURL = "https://tweet-postgress-service.herokuapp.com/tweet/";
-const refURL = "http://localhost:8082/tweet/";
+const refURL = "https://tweet-postgress-service.herokuapp.com/tweet/";
+// const refURL = "http://localhost:8082/tweet/";
 const getTweetUrl = refURL + "getAllTweets";
 const addTweetUrl = refURL + "addTweet";
 const getMyTweetsUrl = refURL + "getTweetsByUserId";
