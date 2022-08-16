@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route path="/tweet" element={<SharedLayout />}>
           <Route index element={<Feed />} />
           <Route path="*" element={<Error />} />
           <Route path="my_tweets" element={<MyTweets />} />
@@ -25,7 +25,7 @@ function App() {
           <Route path="search_users" element={<SearchUser />} />
         </Route>
 
-        <Route path="/login" exact element={<SignInSide />}>
+        <Route path="/" exact element={<SignInSide />}>
           <Route index element={<LoginForm />} />
           <Route exact path="signup" element={<SignUp />} />
           <Route exact path="forgot" element={<ForgetForm />} />

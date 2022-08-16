@@ -41,16 +41,18 @@ const SearchUser = () => {
   const [userInput, setUserInput] = useState("");
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
+  
+  useEffect(() => {
     if (userInput.length > 0) {
       dispatch(searchUserByUsername({ userInput, token }));
     }
   }, [token, userInput, dispatch]);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
-  }, [isLoggedIn, navigate]);
+  
 
 
   const searchUserInputHandler = (e) => {

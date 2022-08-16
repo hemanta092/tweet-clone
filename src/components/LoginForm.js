@@ -10,9 +10,10 @@ import { useForm } from "react-hook-form";
 import "./SignInSide.css";
 import Copyright from "./Copyright";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../features/user/userSlice";
 import { useSnackbar } from "notistack";
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function LoginForm() {
   const {
@@ -27,13 +28,13 @@ export default function LoginForm() {
   const navigate = useNavigate();
   
   const { enqueueSnackbar } = useSnackbar();
-
+  const { isLoading } = useSelector((state) => state.user);
 
 
   const onSubmit = async(data) => {
     try{
       await dispatch(loginRequest(data)).unwrap();
-      navigate("/");
+      navigate("/tweet");
     }
     catch(err){
       const variant = "error";
@@ -104,16 +105,17 @@ export default function LoginForm() {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          Sign In
+          { isLoading===true? <Spinner animation="border" variant="light" />:"Sign In"}
+          
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link to="/login/forgot" variant="body2">
+            <Link to="forgot" variant="body2">
               Forgot password
             </Link>
           </Grid>
           <Grid item>
-            <Link to="/login/signup" variant="body2">
+            <Link to="signup" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>

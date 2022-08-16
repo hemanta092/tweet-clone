@@ -4,9 +4,8 @@ import "./Feed.css";
 import { useNavigate } from "react-router";
 import { getTweets } from "./features/tweet/tweetSlice";
 import { Divider, Grid } from "@mui/material";
-import TweetCard from "./components/TweetCard"
+import TweetCard from "./components/TweetCard";
 import { useSelector, useDispatch } from "react-redux";
-
 
 function Feed() {
   const { isLoggedIn, token } = useSelector((state) => state.user);
@@ -14,17 +13,15 @@ function Feed() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
-
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/login");
+      navigate("/");
     }
   }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     dispatch(getTweets(token));
-  }, [dispatch, token]);
+  }, [token, dispatch]);
 
   return (
     <>

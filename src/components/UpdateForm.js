@@ -43,7 +43,7 @@ export default function UpdateForm() {
     dispatch(updatePassword(body));
     const variant="success";
     enqueueSnackbar("Password updated successfully", {variant});
-    navigate("/login");
+    navigate("/");
     reset();
   };
   return (
@@ -133,7 +133,7 @@ export default function UpdateForm() {
             </Link>
           </Grid>
           <Grid item>
-            <Link to="/login/signup" variant="body2">
+            <Link to="signup" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>

@@ -44,7 +44,7 @@ export default function DrawerAppBar(props) {
       <List>
         <ListItem disablePadding sx={{ justifyContent: "center" }}>
         <Link
-            to="/"
+            to="/tweet"
             style={{
               textAlign: "center",
               textDecoration: "none",
@@ -59,7 +59,7 @@ export default function DrawerAppBar(props) {
 
         <ListItem disablePadding sx={{ justifyContent: "center" }}>
           <Link
-            to="/login"
+            to="/"
             style={{
               textAlign: "center",
               textDecoration: "none",
@@ -81,7 +81,7 @@ export default function DrawerAppBar(props) {
       <Divider style={{ backgroundColor: "grey" }} variant="middle"/>
       <ListItem disablePadding sx={{ justifyContent: "center" }}>
         <Link
-            to="/my_tweets"
+            to="/tweet/my_tweets"
             style={{
               textAlign: "center",
               textDecoration: "none",
@@ -95,7 +95,7 @@ export default function DrawerAppBar(props) {
         </ListItem>
         <ListItem disablePadding sx={{ justifyContent: "center" }}>
         <Link
-            to="/all_users"
+            to="/tweet/all_users"
             style={{
               textAlign: "center",
               textDecoration: "none",
@@ -109,7 +109,7 @@ export default function DrawerAppBar(props) {
         </ListItem>
         <ListItem disablePadding sx={{ justifyContent: "center" }}>
         <Link
-            to="/search_users"
+            to="/tweet/search_users"
             style={{
               textAlign: "center",
               textDecoration: "none",
@@ -155,14 +155,14 @@ export default function DrawerAppBar(props) {
               </Button>
             ))} */}
             <Link
-            to="/"
+            to="/tweet"
           >
           <Button sx={{color:"#fff"}}>
             Home
           </Button>
           </Link>
           <Link
-            to="/my_tweets"
+            to="/tweet/my_tweets"
             
           >
           <Button sx={{color:"#fff"}}>
@@ -170,7 +170,7 @@ export default function DrawerAppBar(props) {
           </Button>
           </Link>
           <Link
-            to="/all_users"
+            to="/tweet/all_users"
             
           >
           <Button sx={{color:"#fff"}}>
@@ -178,7 +178,7 @@ export default function DrawerAppBar(props) {
           </Button>
           </Link>
           <Link
-            to="/search_users"
+            to="/tweet/search_users"
             
           >
           <Button sx={{color:"#fff"}}>
@@ -186,7 +186,7 @@ export default function DrawerAppBar(props) {
           </Button>
           </Link>
           <Link
-            to="/login"
+            to="/"
           >
             {isLoggedIn ? (
               <Button onClick={handleSignOut} sx={{color:"#fff"}}>

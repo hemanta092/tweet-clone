@@ -19,20 +19,20 @@ const AllUsers = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
+  
+  useEffect(() => {
     dispatch(getAllUsers(token));
   }, [token, dispatch]);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
-  }, [isLoggedIn, navigate]);
+
 
 
   const convertTime = (time) => {
-    const theDate = new Date(time).toLocaleString();
-    const now = new Date().toLocaleString();
-    const diffTime = new Date(now) - new Date(theDate);
+    const diffTime = new Date() - new Date(time);
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     const diffMin = Math.floor(diffTime / (1000 * 60));
     const diffHours = Math.floor(diffTime / (1000 * 60 * 60));

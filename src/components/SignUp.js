@@ -73,7 +73,7 @@ export default function SignUp() {
       ).unwrap();
       const variant = "success";
       enqueueSnackbar("Sign Up Successfully!", { variant });
-      navigate("/login");
+      navigate("/tweet");
     } catch (err) {
       const variant = "error";
       enqueueSnackbar("UserID Already Exist", { variant });

@@ -50,7 +50,7 @@ export default function ForgetForm() {
     dispatch(updateForgotUserid(user.userId));
     try{
       await dispatch(forgotRequest(user)).unwrap();
-      navigate("/login/update");
+      navigate("update");
     }catch(err){
       const variant = "error";
       enqueueSnackbar("User Not Found For The Given Date.", { variant });
@@ -155,7 +155,7 @@ export default function ForgetForm() {
             </Link>
           </Grid>
           <Grid item>
-            <Link to="/login/signup" variant="body2">
+            <Link to="signup" variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>

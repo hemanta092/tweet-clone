@@ -11,15 +11,16 @@ const MyTweets = () => {
   const { isLoggedIn,token, userId } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(getMyTweets({ token, userId }));
-  }, [token, userId, dispatch]);
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/login");
+      navigate("/");
     }
   }, [isLoggedIn, navigate]);
+  
+  useEffect(() => {
+    dispatch(getMyTweets({ token, userId }));
+  }, [token, userId, dispatch]);
 
   return (
     <>

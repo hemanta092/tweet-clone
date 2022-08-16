@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const refURL = "https://tweet-postgress-service.herokuapp.com/tweet/";
-// const refURL = "http://localhost:8082/tweet/";
+// const refURL = "https://tweet-postgress-service.herokuapp.com/tweet/";
+const refURL = "http://localhost:8082/tweet/";
 const getTweetUrl = refURL + "getAllTweets";
 const addTweetUrl = refURL + "addTweet";
 const getMyTweetsUrl = refURL + "getTweetsByUserId";
@@ -108,22 +108,19 @@ export const searchUserByUsername = createAsyncThunk(
   }
 );
 
-export const likeTweet = createAsyncThunk(
-  "likeTweet",
-  async (reqBody) => {
-    try {
-      const res = await axios.get(`${likeTweetURL}/${reqBody.tweetId}`, {
-        headers: {
-          Authorization: reqBody.token,
-        },
-      });
-      console.log(res);
-      return res.data;
-    } catch (err) {
-      console.error(err);
-    }
+export const likeTweet = createAsyncThunk("likeTweet", async (reqBody) => {
+  try {
+    const res = await axios.get(`${likeTweetURL}/${reqBody.tweetId}`, {
+      headers: {
+        Authorization: reqBody.token,
+      },
+    });
+    console.log(res);
+    return res.data;
+  } catch (err) {
+    console.error(err);
   }
-);
+});
 
 export const tweetReply = createAsyncThunk("tweetReply", async (reqBody) => {
   try {
@@ -182,6 +179,7 @@ const tweetSlice = createSlice({
       state.isLoading = true;
     },
     [getTweets.fulfilled]: (state, action) => {
+      state.isLoading = false;
       state.tweets = action.payload;
     },
     [getTweets.rejected]: (state, action) => {
@@ -201,11 +199,12 @@ const tweetSlice = createSlice({
     },
     [likeTweet.fulfilled]: (state, action) => {
       state.tweets = state.tweets.map((t) => {
+        console.log(action.payload);
         if (t.tweetId === action.payload.tweetId) {
           t.hasLiked = action.payload.hasLiked;
           t.tweetLikes = action.payload.tweetLikes;
           t.tweetLikesCount = action.payload.tweetLikesCount;
-          t.updateDateTime = action.payload.tweetLikesCount;
+          t.updateDateTime = action.payload.updateDateTime;
         }
         return t;
       });
@@ -215,7 +214,7 @@ const tweetSlice = createSlice({
           t.hasLiked = action.payload.hasLiked;
           t.tweetLikes = action.payload.tweetLikes;
           t.tweetLikesCount = action.payload.tweetLikesCount;
-          t.updateDateTime = action.payload.tweetLikesCount;
+          t.updateDateTime = action.payload.updateDateTime;
         }
         return t;
       });
