@@ -4,10 +4,11 @@ import TweetCard from "../components/TweetCard";
 import { Grid } from "@mui/material";
 import { getMyTweets } from "../features/tweet/tweetSlice";
 import { useNavigate } from "react-router";
+import Spinner from "react-bootstrap/Spinner";
 
 const MyTweets = () => {
   const dispatch = useDispatch();
-  const { myTweets } = useSelector((state) => state.tweet);
+  const { myTweets,isLoading } = useSelector((state) => state.tweet);
   const { isLoggedIn,token, userId } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
@@ -31,7 +32,9 @@ const MyTweets = () => {
         justifyContent="space-evenly"
         alignItems="stretch"
       >
-        {myTweets?.map((tweet) => (
+        {myTweets.length===0 && isLoading === true ? (
+            <Spinner animation="border" variant="primary" style={{position:"absolute",bottom:"30%",left:"47%"}} />
+          ) :(myTweets?.map((tweet) => (
           <Grid item md key={tweet.updateDateTime}>
             <TweetCard
               id={tweet.tweetId}
@@ -46,7 +49,7 @@ const MyTweets = () => {
               createdTime={tweet.updateDateTime}
             />
           </Grid>
-        ))}
+        )))}
       </Grid>
     </>
   );

@@ -9,13 +9,14 @@ import Avatar from "@mui/material/Avatar";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router";
+import Spinner from "react-bootstrap/Spinner";
 
 const theme = createTheme();
 
 const AllUsers = () => {
   const dispatch = useDispatch();
   const { isLoggedIn ,token } = useSelector((state) => state.user);
-  const { allUsers } = useSelector((state) => state.tweet);
+  const { allUsers,isLoading } = useSelector((state) => state.tweet);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -77,7 +78,9 @@ const AllUsers = () => {
   return (
     <ThemeProvider theme={theme}>
       <h1 style={{ textAlign: "center" }}>All Users</h1>
-      {allUsers?.map((user) => (
+      {isLoading === true ? (
+            <Spinner animation="border" variant="primary" style={{position:"absolute",bottom:"30%",left:"47%"}} />
+          ) :(allUsers?.map((user) => (
         <List sx={{width: "100%",
              backgroundColor: theme.palette.background.paper,
         }} key={user.userId}>
@@ -125,7 +128,7 @@ const AllUsers = () => {
             )}
           </ListItem>
         </List>
-      ))}
+      )))}
     </ThemeProvider>
   );
 };

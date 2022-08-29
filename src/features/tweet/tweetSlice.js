@@ -188,18 +188,31 @@ const tweetSlice = createSlice({
     [addTweet.fulfilled]: (state, action) => {
       state.tweets = [action.payload, ...state.tweets];
     },
+    [getMyTweets.pending]: (state) => {
+      state.isLoading=true;
+    },
     [getMyTweets.fulfilled]: (state, action) => {
+      state.isLoading=false;
       state.myTweets = action.payload;
     },
+    [getMyTweets.rejected]: (state) => {
+      state.isLoading=false;
+    },
+    [getAllUsers.pending]: (state) => {
+      state.isLoading=true;
+    },
     [getAllUsers.fulfilled]: (state, action) => {
+      state.isLoading=false;
       state.allUsers = action.payload;
+    },
+    [getAllUsers.rejected]: (state) => {
+      state.isLoading=false;
     },
     [searchUserByUsername.fulfilled]: (state, action) => {
       state.searchUserResults = action.payload;
     },
     [likeTweet.fulfilled]: (state, action) => {
       state.tweets = state.tweets.map((t) => {
-        console.log(action.payload);
         if (t.tweetId === action.payload.tweetId) {
           t.hasLiked = action.payload.hasLiked;
           t.tweetLikes = action.payload.tweetLikes;
@@ -220,7 +233,6 @@ const tweetSlice = createSlice({
       });
     },
     [tweetReply.fulfilled]: (state, action) => {
-      console.log(action);
       state.tweets = state.tweets.map((t) => {
         if (t.tweetId === action.payload.tweetId) {
           t.tweetReply = action.payload.tweetReply;
@@ -260,7 +272,5 @@ const tweetSlice = createSlice({
     },
   },
 });
-
-//export const { handleLogin } = tweetSlice.actions;
 
 export default tweetSlice.reducer;

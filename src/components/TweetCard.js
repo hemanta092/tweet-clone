@@ -229,7 +229,7 @@ export default function TweetCard({
         <Typography component="div">
           <p className="card-text text-end">
             <small className="text-muted text-black-50">
-              {new Date(createdTime).toLocaleString(undefined, {
+              {new Date(createdTime+"Z").toLocaleString(undefined, {
                 timeZone: "Asia/Kolkata",
               })}
             </small>
@@ -304,7 +304,7 @@ export default function TweetCard({
                   }}
                 >
                   <span>
-                    {new Date(r.creationTime).toLocaleString(undefined, {
+                    {new Date(r.creationTime+"Z").toLocaleString(undefined, {
                       timeZone: "Asia/Kolkata",
                     })}
                   </span>

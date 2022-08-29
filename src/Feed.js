@@ -6,10 +6,11 @@ import { getTweets } from "./features/tweet/tweetSlice";
 import { Divider, Grid } from "@mui/material";
 import TweetCard from "./components/TweetCard";
 import { useSelector, useDispatch } from "react-redux";
+import Spinner from "react-bootstrap/Spinner";
 
 function Feed() {
   const { isLoggedIn, token } = useSelector((state) => state.user);
-  const { tweets } = useSelector((state) => state.tweet);
+  const { tweets,isLoading } = useSelector((state) => state.tweet);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,8 +21,10 @@ function Feed() {
   }, [isLoggedIn, navigate]);
 
   useEffect(() => {
+    if(token.length>0){
     dispatch(getTweets(token));
-  }, [token, dispatch]);
+    }
+  }, [dispatch,token]);
 
   return (
     <>
@@ -34,7 +37,9 @@ function Feed() {
           justifyContent="space-evenly"
           alignItems="stretch"
         >
-          {tweets?.map((post) => (
+          {tweets.length===0 && isLoading === true ? (
+            <Spinner animation="border" variant="primary" style={{position:"absolute",bottom:"30%",left:"47%"}} />
+          ) :(tweets?.map((post) => (
             <Grid item md key={post.tweetId}>
               <TweetCard
                 id={post.tweetId}
@@ -49,7 +54,7 @@ function Feed() {
                 createdTime={post.updateDateTime}
               />
             </Grid>
-          ))}
+          )))}
         </Grid>
       </div>
     </>
