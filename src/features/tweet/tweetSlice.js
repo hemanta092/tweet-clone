@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { signoutRequest } from "../user/userSlice";
 
 const refURL = "https://tweet-postgress-service.herokuapp.com/tweet/";
 // const refURL = "http://localhost:8082/tweet/";
@@ -20,7 +21,13 @@ const initialState = {
   allUsers: [],
   searchUserResults: [],
 };
-
+const defaultState = {
+  isLoading: false,
+  tweets: [],
+  myTweets: [],
+  allUsers: [],
+  searchUserResults: [],
+};
 export const getTweets = createAsyncThunk(
   "tweet/getTweets",
   async (reqBody, thunkAPI) => {
@@ -269,6 +276,9 @@ const tweetSlice = createSlice({
       state.myTweets = state.myTweets.filter(
         (item) => item.tweetId !== action.payload.tweetId
       );
+    },
+    [signoutRequest.fulfilled]: (state) => {
+      Object.assign(state, defaultState);
     },
   },
 });

@@ -79,7 +79,7 @@ const AllUsers = () => {
     <ThemeProvider theme={theme}>
       <h1 style={{ textAlign: "center" }}>All Users</h1>
       {isLoading === true ? (
-            <Spinner animation="border" variant="primary" style={{position:"absolute",bottom:"30%",left:"47%"}} />
+            <Spinner animation="border" variant="primary" style={{margin:" auto",marginTop:"40%"}} />
           ) :(allUsers?.map((user) => (
         <List sx={{width: "100%",
              backgroundColor: theme.palette.background.paper,

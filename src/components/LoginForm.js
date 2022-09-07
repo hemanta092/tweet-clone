@@ -114,7 +114,7 @@ export default function LoginForm() {
           type="submit"
           fullWidth
           variant="contained"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{ mt: 3, mb: 2 ,height:"45px"}}
         >
           {isLoading === true ? (
             <Spinner animation="border" variant="light" />

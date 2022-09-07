@@ -33,7 +33,7 @@ const MyTweets = () => {
         alignItems="stretch"
       >
         {myTweets.length===0 && isLoading === true ? (
-            <Spinner animation="border" variant="primary" style={{position:"absolute",bottom:"30%",left:"47%"}} />
+            <Spinner animation="border" variant="primary" style={{margin:" auto",marginTop:"40%"}} />
           ) :(myTweets?.map((tweet) => (
           <Grid item md key={tweet.updateDateTime}>
             <TweetCard

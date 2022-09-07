@@ -38,7 +38,7 @@ function Feed() {
           alignItems="stretch"
         >
           {tweets.length===0 && isLoading === true ? (
-            <Spinner animation="border" variant="primary" style={{position:"absolute",bottom:"30%",left:"47%"}} />
+            <Spinner animation="border" variant="primary" style={{margin:" auto",marginTop:"40%"}} />
           ) :(tweets?.map((post) => (
             <Grid item md key={post.tweetId}>
               <TweetCard
